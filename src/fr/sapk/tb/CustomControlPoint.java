@@ -118,6 +118,7 @@ public class CustomControlPoint extends ControlPoint implements DeviceChangeList
         setLampeOn.setArgumentValue("Command", "on");
         return setLampeOn.postControlAction();
     }
+
     public Boolean EteindreLampe() {
         System.out.println("AllumeLampe()");
         Device el = getDevice("LIMSI CM11");
@@ -158,5 +159,27 @@ public class CustomControlPoint extends ControlPoint implements DeviceChangeList
         Action beep = el.getAction("Beep");
         beep.setArgumentValue("Player", "IRoom_Beeper");
         return beep.postControlAction();
+    }
+
+    public String Arduino() {
+        System.out.println("Arduino()");
+        Device el = getDevice("ArduinoLampe");
+        if (el == null) {
+            System.out.println("  Failed to retrieve LIMSI AudioPlayer");
+            return "Terminal Not Found";
+        }
+        parseDevice("test", el);
+        Action arduino = el.getAction("GetStatus");
+        if (arduino.postControlAction()) {
+            ArgumentList list = arduino.getOutputArgumentList();
+            String ret = "Value : ";
+            for (int i = 0; i < list.size(); i++) {
+                Argument arg = list.getArgument(i);
+                ret += arg.getName() + ":" + arg.getValue();
+            }
+            return ret;
+        } else {
+            return "Get failed";
+        }
     }
 }
