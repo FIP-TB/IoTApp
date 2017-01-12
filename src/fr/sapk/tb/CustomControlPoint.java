@@ -105,7 +105,7 @@ public class CustomControlPoint extends ControlPoint implements DeviceChangeList
         StateVariable timeStateVar = lampe.getStateVariable(“time”); 
     }
      */
-    Boolean AllumeLampe() {
+    public Boolean AllumeLampe() {
         System.out.println("AllumeLampe()");
         Device el = getDevice("LIMSI CM11");
         if (el == null) {
@@ -118,7 +118,7 @@ public class CustomControlPoint extends ControlPoint implements DeviceChangeList
         setLampeOn.setArgumentValue("Command", "on");
         return setLampeOn.postControlAction();
     }
-    Boolean EteindreLampe() {
+    public Boolean EteindreLampe() {
         System.out.println("AllumeLampe()");
         Device el = getDevice("LIMSI CM11");
         if (el == null) {
@@ -132,7 +132,7 @@ public class CustomControlPoint extends ControlPoint implements DeviceChangeList
         return setLampeOn.postControlAction();
     }
 
-    Boolean SetMessage(String m) {
+    public Boolean SetMessage(String m) {
         System.out.println("SetMessage()"
                 + "\n Message: " + m
         );
@@ -147,7 +147,7 @@ public class CustomControlPoint extends ControlPoint implements DeviceChangeList
         return setText.postControlAction();
     }
 
-    Boolean Beep() {
+    public Boolean Beep() {
         System.out.println("Beep()");
         Device el = getDevice("LIMSI AudioPlayer");
         if (el == null) {
