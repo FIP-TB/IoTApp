@@ -19,7 +19,7 @@ public class CustomControlPoint extends ControlPoint implements DeviceChangeList
 
     public void deviceAdded(Device dev) {
         if (dev.isDeviceType("urn:schemas-upnp-org:device:MediaServer:1")) {
-            return; //Skip
+            return; //Skip (Window, Plex)
         }
         parseDevice("deviceAdded", dev);
     }
@@ -161,11 +161,11 @@ public class CustomControlPoint extends ControlPoint implements DeviceChangeList
         return beep.postControlAction();
     }
 
-    public String Arduino() {
+    public String ArduinoGetStatus() {
         System.out.println("Arduino()");
         Device el = getDevice("ArduinoLampe");
         if (el == null) {
-            System.out.println("  Failed to retrieve LIMSI AudioPlayer");
+            System.out.println("  Failed to retrieve ArduinoLampe");
             return "Terminal Not Found";
         }
         parseDevice("test", el);
@@ -181,5 +181,115 @@ public class CustomControlPoint extends ControlPoint implements DeviceChangeList
         } else {
             return "Get failed";
         }
+    }
+    public boolean ArduinoSetTarget(String value) {
+        System.out.println("Arduino()");
+        Device el = getDevice("ArduinoLampe");
+        if (el == null) {
+            System.out.println("  Failed to retrieve ArduinoLampe");
+            return false;
+        }
+        parseDevice("test", el);
+        Action arduino = el.getAction("SetTarget");
+
+        arduino.setArgumentValue("newTargetValue", value);
+        return arduino.postControlAction();
+    }
+    public String ArduinoGetTarget() {
+        System.out.println("Arduino()");
+        Device el = getDevice("ArduinoLampe");
+        if (el == null) {
+            System.out.println("  Failed to retrieve ArduinoLampe");
+            return "Terminal Not Found";
+        }
+        parseDevice("test", el);
+        Action arduino = el.getAction("GetTarget");
+        
+        if (arduino.postControlAction()) {
+            ArgumentList list = arduino.getOutputArgumentList();
+            String ret = "Value : ";
+            for (int i = 0; i < list.size(); i++) {
+                Argument arg = list.getArgument(i);
+                ret += arg.getName() + ":" + arg.getValue();
+            }
+            return ret;
+        } else {
+            return "Get failed";
+        }
+        
+    }
+    
+    public String ArduinoGetAutomatic() {
+        System.out.println("Arduino()");
+        Device el = getDevice("ArduinoLampe");
+        if (el == null) {
+            System.out.println("  Failed to retrieve ArduinoLampe");
+            return "Terminal Not Found";
+        }
+        parseDevice("test", el);
+        Action arduino = el.getAction("GetAutomatic");
+        
+        if (arduino.postControlAction()) {
+            ArgumentList list = arduino.getOutputArgumentList();
+            String ret = "Value : ";
+            for (int i = 0; i < list.size(); i++) {
+                Argument arg = list.getArgument(i);
+                ret += arg.getName() + ":" + arg.getValue();
+            }
+            return ret;
+        } else {
+            return "Get failed";
+        }
+        
+    }
+    public boolean ArduinoSetAutomatic(String value) {
+        System.out.println("Arduino()");
+        Device el = getDevice("ArduinoLampe");
+        if (el == null) {
+            System.out.println("  Failed to retrieve ArduinoLampe");
+            return false;
+        }
+        parseDevice("test", el);
+        Action arduino = el.getAction("SetAutomatic");
+
+        arduino.setArgumentValue("automatic", value);
+        return arduino.postControlAction();
+    }
+    
+    public String ArduinoGetSensibility() {
+        System.out.println("Arduino()");
+        Device el = getDevice("ArduinoLampe");
+        if (el == null) {
+            System.out.println("  Failed to retrieve ArduinoLampe");
+            return "Terminal Not Found";
+        }
+        parseDevice("test", el);
+        Action arduino = el.getAction("GetSensibility");
+        
+        if (arduino.postControlAction()) {
+            ArgumentList list = arduino.getOutputArgumentList();
+            String ret = "Value : ";
+            for (int i = 0; i < list.size(); i++) {
+                Argument arg = list.getArgument(i);
+                ret += arg.getName() + ":" + arg.getValue();
+            }
+            return ret;
+        } else {
+            return "Get failed";
+        }
+        
+    }
+    public boolean ArduinoSetSensibility(String value) {
+        System.out.println("Arduino()");
+        Device el = getDevice("ArduinoLampe");
+        if (el == null) {
+            System.out.println("  Failed to retrieve ArduinoLampe");
+            return false;
+        }
+        parseDevice("test", el);
+        Action arduino = el.getAction("SetSensibility");
+        
+        arduino.setArgumentValue("sensibility", value);
+        return arduino.postControlAction();
     }
 }

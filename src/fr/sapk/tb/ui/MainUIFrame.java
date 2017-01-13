@@ -6,6 +6,7 @@
 package fr.sapk.tb.ui;
 
 import fr.sapk.tb.CustomControlPoint;
+import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.cybergarage.upnp.Device;
@@ -24,6 +25,7 @@ public class MainUIFrame extends javax.swing.JFrame {
      */
     public MainUIFrame() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage("icon.png"));
     }
 
     /**
@@ -44,8 +46,20 @@ public class MainUIFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         ButtonLampe4 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
+        ButtonLampe5 = new javax.swing.JButton();
+        ButtonLampe6 = new javax.swing.JButton();
+        ButtonLampe7 = new javax.swing.JButton();
+        jTextField2 = new javax.swing.JTextField();
+        ButtonLampe8 = new javax.swing.JButton();
+        ButtonLampe9 = new javax.swing.JButton();
+        ButtonLampe10 = new javax.swing.JButton();
+        jTextField3 = new javax.swing.JTextField();
+        ButtonLampe11 = new javax.swing.JButton();
+        jTextField4 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("IoTApp");
+        setResizable(false);
 
         ButtonLampe.setText("Scan");
         ButtonLampe.addActionListener(new java.awt.event.ActionListener() {
@@ -89,10 +103,61 @@ public class MainUIFrame extends javax.swing.JFrame {
             }
         });
 
-        ButtonLampe4.setText("Arduino");
+        ButtonLampe4.setText("Ard.GetStatus");
         ButtonLampe4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonArduinoOnActionPerformed(evt);
+                ButtonArduinoGetStatusOnActionPerformed(evt);
+            }
+        });
+
+        ButtonLampe5.setText("Ard.GetTarget");
+        ButtonLampe5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonArduinoGetTargetOnActionPerformed(evt);
+            }
+        });
+
+        ButtonLampe6.setText("Ard.GetSensi");
+        ButtonLampe6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonArduinoGetSensiOnActionPerformed(evt);
+            }
+        });
+
+        ButtonLampe7.setText("Ard.GetAuto");
+        ButtonLampe7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonArduinoGetAutoOnActionPerformed(evt);
+            }
+        });
+
+        ButtonLampe8.setText("Ard.SetAuto");
+        ButtonLampe8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonArduinosetAutoOnActionPerformed(evt);
+            }
+        });
+
+        ButtonLampe9.setText("Ard.SetSensi");
+        ButtonLampe9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonArduinoSetSensiOnActionPerformed(evt);
+            }
+        });
+
+        ButtonLampe10.setText("Ard.SetTarget");
+        ButtonLampe10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonArduinoSetTargetOnActionPerformed(evt);
+            }
+        });
+
+        jTextField3.setEditable(false);
+
+        ButtonLampe11.setText("SendMessage");
+        ButtonLampe11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBonjourActionPerformed(evt);
             }
         });
 
@@ -105,7 +170,18 @@ public class MainUIFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextField1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ButtonLampe9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ButtonLampe10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ButtonLampe4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ButtonLampe5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(ButtonLampe6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(ButtonLampe7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(ButtonLampe8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ButtonLampe1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -113,30 +189,53 @@ public class MainUIFrame extends javax.swing.JFrame {
                             .addComponent(ButtonLampe3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ButtonLampe2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(ButtonLampe4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(18, 18, 18))
+                            .addComponent(ButtonLampe11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField4))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ButtonLampe)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                        .addComponent(ButtonLampe2)
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ButtonLampe)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ButtonLampe4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ButtonLampe1)
-                        .addGap(12, 12, 12)
-                        .addComponent(ButtonLampe3))
-                    .addComponent(jScrollPane1))
-                .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(ButtonLampe4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ButtonLampe5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ButtonLampe6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ButtonLampe7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ButtonLampe11))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ButtonLampe2)
+                            .addComponent(ButtonLampe10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ButtonLampe1)
+                            .addComponent(ButtonLampe9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ButtonLampe3)
+                            .addComponent(ButtonLampe8)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addGap(6, 6, 6))
         );
 
         ButtonLampe.getAccessibleContext().setAccessibleName("Lampe");
@@ -186,10 +285,65 @@ public class MainUIFrame extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_RefreshButtonActionPerformed
 
-    private void ButtonArduinoOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonArduinoOnActionPerformed
+    private void ButtonArduinoGetStatusOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonArduinoGetStatusOnActionPerformed
         jTextField1.setText("Getting data ...");
-        jTextField1.setText(ctrlPoint.Arduino());
-    }//GEN-LAST:event_ButtonArduinoOnActionPerformed
+        jTextField1.setText(ctrlPoint.ArduinoGetStatus());
+    }//GEN-LAST:event_ButtonArduinoGetStatusOnActionPerformed
+
+    private void ButtonArduinoGetTargetOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonArduinoGetTargetOnActionPerformed
+
+        jTextField1.setText("Getting data ...");
+        jTextField1.setText(ctrlPoint.ArduinoGetTarget());
+    }//GEN-LAST:event_ButtonArduinoGetTargetOnActionPerformed
+
+    private void ButtonArduinoGetSensiOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonArduinoGetSensiOnActionPerformed
+
+        jTextField1.setText("Getting data ...");
+        jTextField1.setText(ctrlPoint.ArduinoGetSensibility());
+    }//GEN-LAST:event_ButtonArduinoGetSensiOnActionPerformed
+
+    private void ButtonArduinoGetAutoOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonArduinoGetAutoOnActionPerformed
+
+        jTextField1.setText("Getting data ...");
+        jTextField1.setText(ctrlPoint.ArduinoGetAutomatic());
+    }//GEN-LAST:event_ButtonArduinoGetAutoOnActionPerformed
+
+    private void ButtonArduinosetAutoOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonArduinosetAutoOnActionPerformed
+        jTextField1.setText("Sending data ...");
+        if (ctrlPoint.ArduinoSetAutomatic(jTextField2.getText())) {
+            jTextField1.setText("Success !");
+        } else {
+            jTextField1.setText("Failed !");
+        }
+    }//GEN-LAST:event_ButtonArduinosetAutoOnActionPerformed
+
+    private void ButtonArduinoSetSensiOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonArduinoSetSensiOnActionPerformed
+        jTextField1.setText("Sending data ...");
+        if (ctrlPoint.ArduinoSetSensibility(jTextField2.getText())) {
+            jTextField1.setText("Success !");
+        } else {
+            jTextField1.setText("Failed !");
+        }
+    }//GEN-LAST:event_ButtonArduinoSetSensiOnActionPerformed
+
+    private void ButtonArduinoSetTargetOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonArduinoSetTargetOnActionPerformed
+        jTextField1.setText("Sending data ...");
+        if (ctrlPoint.ArduinoSetTarget(jTextField2.getText())) {
+            jTextField1.setText("Success !");
+        } else {
+            jTextField1.setText("Failed !");
+        }
+    }//GEN-LAST:event_ButtonArduinoSetTargetOnActionPerformed
+
+    private void ButtonBonjourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBonjourActionPerformed
+
+        jTextField1.setText("Sending data ...");
+        if (ctrlPoint.SetMessage(jTextField4.getText())) {
+            jTextField1.setText("Success !");
+        } else {
+            jTextField1.setText("Failed !");
+        }
+    }//GEN-LAST:event_ButtonBonjourActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,12 +355,17 @@ public class MainUIFrame extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
+            /*
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
+            */
+            //javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getCrossPlatformLookAndFeelClassName());
+            
+            javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(MainUIFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -224,18 +383,29 @@ public class MainUIFrame extends javax.swing.JFrame {
                 new MainUIFrame().setVisible(true);
             }
         });
+        
         ctrlPoint = new CustomControlPoint();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonLampe;
     private javax.swing.JButton ButtonLampe1;
+    private javax.swing.JButton ButtonLampe10;
+    private javax.swing.JButton ButtonLampe11;
     private javax.swing.JButton ButtonLampe2;
     private javax.swing.JButton ButtonLampe3;
     private javax.swing.JButton ButtonLampe4;
+    private javax.swing.JButton ButtonLampe5;
+    private javax.swing.JButton ButtonLampe6;
+    private javax.swing.JButton ButtonLampe7;
+    private javax.swing.JButton ButtonLampe8;
+    private javax.swing.JButton ButtonLampe9;
     private javax.swing.JButton jButton1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
